@@ -1,0 +1,74 @@
+@if(isLoading){
+<mat-spinner></mat-spinner>
+} @else {
+<mat-form-field>
+  <mat-label>Filter elements</mat-label>
+  <input
+    matInput
+    [formControl]="filterControl"
+    (keydown.enter)="filterItems()"
+  />
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+
+<table mat-table [dataSource]="filteredTable" class="mat-elevation-z8">
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>No.</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        mat-button
+        matTooltip="Edit value"
+        aria-label="Button that displays a tooltip when focused or hovered over"
+        (click)="onEditElement(element, 'position')"
+      >
+        {{ element.position }}
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        mat-button
+        matTooltip="Edit value"
+        aria-label="Button that displays a tooltip when focused or hovered over"
+        (click)="onEditElement(element, 'name')"
+      >
+        {{ element.name }}
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef>Weight</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        mat-button
+        matTooltip="Edit value"
+        aria-label="Button that displays a tooltip when focused or hovered over"
+        (click)="onEditElement(element, 'weight')"
+      >
+        {{ element.weight }}
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef>Symbol</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        mat-button
+        matTooltip="Edit value"
+        aria-label="Button that displays a tooltip when focused or hovered over"
+        (click)="onEditElement(element, 'symbol')"
+      >
+        {{ element.symbol }}
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+}
